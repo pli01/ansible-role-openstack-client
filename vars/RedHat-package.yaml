@@ -1,0 +1,3 @@
+---
+__openstack_client_build_depends:
+  - python-devel
