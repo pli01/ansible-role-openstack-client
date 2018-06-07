@@ -1,0 +1,6 @@
+---
+- name: Install openstack-client from package.
+  package:
+    name: "{{ item }}"
+    state: installed
+  with_items: "{{ openstack_client_package_name }}"

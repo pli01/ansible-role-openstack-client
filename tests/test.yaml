@@ -1,0 +1,30 @@
+---
+- hosts: test
+  vars:
+    rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
+  pre_tasks:
+    # Make sure OS does not have a stale package cache.
+    - name: Update apt cache.
+      become: yes
+      apt:
+        update_cache: yes
+      when: ansible_os_family == 'Debian'
+
+  roles:
+    - "{{ rolename }}"
+
+  post_tasks:
+    - name: Register /usr/bin/openstack
+      stat:
+        path: /usr/bin/openstack
+      register: openstack-client_stat
+
+    - name: Assert /usr/bin/openstack tests.
+      assert:
+        that:
+          - openstack-client_stat.stat.exists
+          - openstack-client_stat.stat.isdir
+          - openstack-client_stat.stat.pw_name == 'root'
+          - openstack-client_stat.stat.gr_name == 'root'
+          - openstack-client_stat.stat.mode == '0755'
+

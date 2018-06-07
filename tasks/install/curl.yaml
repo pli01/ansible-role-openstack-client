@@ -1,0 +1,8 @@
+---
+- name: install openstack-client using curl
+  get_url:
+    url: '{{ openstack_client_curl_url }}'
+    dest: '{{ openstack_client_bin }}'
+    force: true
+    mode: '555'
+  environment: "{{ proxy_env |default(omit) }}"

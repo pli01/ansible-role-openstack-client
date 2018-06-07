@@ -1,0 +1,11 @@
+---
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}-{{ openstack_client_install_method }}.yaml"
+
+- include: "install-{{ ansible_os_family }}.yaml"
+  become: yes
+
+- include: install.yaml
+  become: yes
+
+- include: config.yaml

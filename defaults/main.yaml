@@ -1,0 +1,18 @@
+---
+# tasks/config.yaml
+
+# tasks/install.yaml
+# openstack_client_install_method: pip package curl
+openstack_client_install_method: package
+
+#openstack_client_pip_name: python-openstackclient
+# openstack_client_pip_extra_args:
+#openstack_client_pip_version: 3.14.0
+# openstack_client_pip_virtualenv:
+
+openstack_client_package_name:
+  - python-openstackclient
+
+#openstack_client_curl_url:
+#openstack_client_bin: /usr/local/bin/openstack
+#openstack_client_version: 1.19.0

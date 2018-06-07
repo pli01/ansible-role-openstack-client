@@ -1,0 +1,8 @@
+---
+- name: Install openstack-client using pip.
+  pip:
+    extra_args: "{{ openstack_client_pip_extra_args|default(omit) }}"
+    name: "{{ openstack_client_pip_name }}"
+    version: "{{ openstack_client_pip_version|default(omit) }}"
+    virtualenv: "{{ openstack_client_pip_virtualenv|default(omit) }}"
+  environment: "{{ proxy_env | default(omit) }}"
