@@ -4,3 +4,4 @@
     name: "{{ item }}"
     state: installed
   with_items: "{{ openstack_client_package_name }}"
+  environment: "{{ proxy_env | default(omit) }}"
